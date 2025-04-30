@@ -6,12 +6,13 @@ from weather_data_fetcher import *
 
 fetcher = WeatherDataFetcher("56b0e25aa21d726d7d7ed712f76bf41c")
 forecast = fetcher.fetch_forecast("Rapperswil")
-print(forecast)
-analyzer = WeatherAnalyzer(forecast)
-analyzer.plot_chart()
+
+analyzer = ForecastAnalyzer(forecast)
+analyzer.analyze()
 
 # Plots aus CSV
 
 csv_analyzer = CSVAnalyzer('data/weatherHistory.csv')
 
 csv_analyzer.csv_to_df()
+
