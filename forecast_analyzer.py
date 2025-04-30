@@ -63,7 +63,7 @@ class ForecastAnalyzer:
         hottest_temp = self.df[self.df["date"] == hottest_day_date]["temperature"].max()
         print("\nHottest day:")
         print(
-            f"Date: {hottest_day_date}, Average Temperature: {hottest_temp:.2f}°C, ")
+            f"Date: {hottest_day_date}, Maximum Temperature: {hottest_temp:.2f}°C, ")
 
         # Calculate average temperature
         avg_temp = self.df["temperature"].mean()
