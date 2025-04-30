@@ -5,7 +5,7 @@ class WeatherDataFetcher:
         self.api_key = api_key
 
     def fetch_current_weather(self, city):
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={self.api_key}"
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={self.api_key}"
         response = requests.get(url)
         if response.status_code == 200:
             json_data = response.json()

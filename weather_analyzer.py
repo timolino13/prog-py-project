@@ -13,6 +13,7 @@ class WeatherAnalyzer:
                 {
                     "timestamp": entry["dt_txt"],
                     "temperature": entry["main"]["temp"],
+                    "feels_like": entry["main"]["feels_like"],
                     "humidity": entry["main"]["humidity"],
                 }
                 for entry in forecast_list
@@ -23,11 +24,15 @@ class WeatherAnalyzer:
     def plot_chart(self):
         df = self.create_pandas_dataframe()
         df["timestamp"] = pd.to_datetime(df["timestamp"])
-        plt.figure(figsize=(10, 5))
-        plt.plot(df["timestamp"], df["temperature"], label="Temperature")
-        plt.plot(df["timestamp"], df["humidity"], label="Humidity")
-        plt.xlabel("Time")
-        plt.ylabel("Value")
+        fig, ax1 = plt.subplots(figsize=(10, 5))
+
+        ax2 = ax1.twinx()
+        ax1.plot(df["timestamp"], df["temperature"], label="Temperature", color="tab:red")
+        ax2.plot(df["timestamp"], df["humidity"], label="Humidity", color="tab:blue")
+
+        ax1.set_xlabel("Day")
+        ax1.set_ylabel("Temperature", color="tab:red")
+        ax2.set_ylabel("Humidity", color="tab:blue")
         plt.title("Weather Forecast")
         plt.legend()
         plt.show()

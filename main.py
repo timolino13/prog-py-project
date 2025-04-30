@@ -3,8 +3,11 @@ from weather_data_fetcher import *
 
 fetcher = WeatherDataFetcher("56b0e25aa21d726d7d7ed712f76bf41c")
 
-fetcher.fetch_current_weather("Rapperswil")
+current_weather = fetcher.fetch_current_weather("Rapperswil")
 forecast = fetcher.fetch_forecast("Rapperswil")
+
+print(current_weather)
+print(forecast)
 
 analyzer = WeatherAnalyzer(forecast)
 
