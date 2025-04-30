@@ -1,5 +1,5 @@
 from csv_analyzer import CSVAnalyzer
-from weather_analyzer import WeatherAnalyzer
+from forecast_analyzer import ForecastAnalyzer
 from weather_data_fetcher import *
 
 # Plots für Forecast
