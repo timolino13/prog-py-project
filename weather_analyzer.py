@@ -24,15 +24,20 @@ class WeatherAnalyzer:
     def plot_chart(self):
         df = self.create_pandas_dataframe()
         df["timestamp"] = pd.to_datetime(df["timestamp"])
-        fig, ax1 = plt.subplots(figsize=(10, 5))
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
 
-        ax2 = ax1.twinx()
         ax1.plot(df["timestamp"], df["temperature"], label="Temperature", color="tab:red")
         ax2.plot(df["timestamp"], df["humidity"], label="Humidity", color="tab:blue")
 
         ax1.set_xlabel("Day")
         ax1.set_ylabel("Temperature", color="tab:red")
+        ax1.set_title("Temperature Forecast")
+        ax1.legend()
+
+        ax2.set_xlabel("Day")
         ax2.set_ylabel("Humidity", color="tab:blue")
-        plt.title("Weather Forecast")
-        plt.legend()
+        ax2.set_title("Humidity Forecast")
+        ax2.legend()
+
+        plt.tight_layout()
         plt.show()
