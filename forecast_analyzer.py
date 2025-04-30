@@ -22,6 +22,7 @@ class ForecastAnalyzer:
         )
 
         df["timestamp"] = pd.to_datetime(df["timestamp"], unit="s")
+        df["date"] = df["timestamp"].dt.date
         return df
 
     def plot_chart(self):
@@ -32,14 +33,13 @@ class ForecastAnalyzer:
         sns.lineplot(ax=axes[1], x="timestamp", y="humidity", data=self.df, color="tab:blue", label="Humidity")
 
         axes[0].set_xlabel("Day")
-        axes[0].set_ylabel("Temperature", color="tab:red")
+        axes[0].set_ylabel("Temperature")
         axes[0].set_title("Temperature Forecast")
         axes[0].legend()
 
         axes[1].set_xlabel("Day")
-        axes[1].set_ylabel("Humidity", color="tab:blue")
+        axes[1].set_ylabel("Humidity")
         axes[1].set_title("Humidity Forecast")
-        axes[1].legend()
 
         plt.tight_layout()
         plt.show()
@@ -47,14 +47,7 @@ class ForecastAnalyzer:
     def analyze(self):
         self.plot_chart()
 
-        # Analyze the forecast data
-        print("Analyzing 5 days forecast data...")
-
-        # Count the number of entries
         print(f"\nNumber of forecast entries: {len(self.df)}")
-
-        # Add a date column
-        self.df["date"] = self.df["timestamp"].dt.date
 
         # Calculate average temperature per day
         daily_avg_temps = self.df.groupby("date")["temperature"].mean()
