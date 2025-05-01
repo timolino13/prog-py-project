@@ -13,6 +13,10 @@ analyzer.analyze()
 # Plots aus CSV
 
 csv_analyzer = CSVAnalyzer('data/weatherHistory.csv')
-
 csv_analyzer.csv_to_df()
+
+#Plot für Durchsnittswerte pro Jahr aus CSV
+
+csv_analyzer.plot_average_per_year()
+
 
