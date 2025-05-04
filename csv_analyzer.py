@@ -1,5 +1,7 @@
 import pandas as pd
 from pathlib import Path
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 class CSVAnalyzer:
     def __init__(self, csv_path):
