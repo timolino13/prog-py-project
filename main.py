@@ -1,3 +1,4 @@
+# %%
 from csv_analyzer import CSVAnalyzer
 from forecast_analyzer import ForecastAnalyzer
 from weather_data_fetcher import WeatherDataFetcher
@@ -12,5 +13,7 @@ forecast_analyzer.analyze()
 
 # Plots aus CSV
 
-csv_analyzer = CSVAnalyzer('data/weatherHistory.csv')
+csv_analyzer = CSVAnalyzer("data/weatherHistory.csv")
 csv_analyzer.analyze()
+
+# %%
