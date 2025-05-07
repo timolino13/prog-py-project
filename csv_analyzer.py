@@ -28,10 +28,10 @@ class CSVAnalyzer:
 
         fig, axes = plt.subplots(3, 1, figsize=(10, 10))
 
-        sns.lineplot(ax=axes[0], data=avg_temp_per_year, x='Year', y='Temperature (C)', marker='o', color='tab:red', label='Temperature')
-        sns.lineplot(ax=axes[0], data=avg_apparent_temp_per_year, x='Year', y='Apparent Temperature (C)', marker='o', color='tab:orange', label='Apparent Temperature')
-        sns.lineplot(ax=axes[1], data=avg_humidity_per_year, x='Year', y='Humidity', marker='o', color='tab:blue', label='Humidity')
-        sns.lineplot(ax=axes[2], data=avg_wind_speed_per_year, x='Year', y='Wind Speed (km/h)', marker='o', color='tab:green', label='Wind Speed')
+        sns.lineplot(ax=axes[0], data=avg_temp_per_year, x='Year', y='Temperature (C)', color='tab:red', label='Temperature')
+        sns.lineplot(ax=axes[0], data=avg_apparent_temp_per_year, x='Year', y='Apparent Temperature (C)', color='tab:orange', label='Apparent Temperature')
+        sns.lineplot(ax=axes[1], data=avg_humidity_per_year, x='Year', y='Humidity', color='tab:blue', label='Humidity')
+        sns.lineplot(ax=axes[2], data=avg_wind_speed_per_year, x='Year', y='Wind Speed (km/h)', color='tab:green', label='Wind Speed')
 
         axes[0].set_title('Average Temperature and Apparent Temperature per Year')
         axes[0].set_xlabel('Year')
