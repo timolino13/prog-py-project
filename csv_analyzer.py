@@ -50,77 +50,27 @@ class CSVAnalyzer:
             df.groupby("Year")["Wind Speed (km/h)"].mean().reset_index()
         )
 
-        fig, axes = plt.subplots(
-            4, 2, figsize=(10, 10)
-        )  # Adjusted to 4 rows and 2 columns
+        fig, axes = plt.subplots(4, 2, figsize=(10, 10))  # Adjusted to 4 rows and 2 columns
 
         # Line plots
-        sns.lineplot(
-            ax=axes[0, 0],
-            data=avg_temp_per_year,
-            x="Year",
-            y="Temperature (C)",
-            color="tab:red",
-            label="Temperature",
-        )
-        sns.lineplot(
-            ax=axes[0, 0],
-            data=avg_apparent_temp_per_year,
-            x="Year",
-            y="Apparent Temperature (C)",
-            color="tab:orange",
-            label="Apparent Temperature",
-        )
-        sns.lineplot(
-            ax=axes[1, 0],
-            data=avg_humidity_per_year,
-            x="Year",
-            y="Humidity",
-            color="tab:blue",
-            label="Humidity",
-        )
-        sns.lineplot(
-            ax=axes[2, 0],
-            data=avg_wind_speed_per_year,
-            x="Year",
-            y="Wind Speed (km/h)",
-            color="tab:green",
-            label="Wind Speed",
-        )
+        sns.lineplot(ax=axes[0, 0], data=avg_temp_per_year, x="Year", y="Temperature (C)", color="tab:red",
+                     label="Temperature", )
+        sns.lineplot(ax=axes[0, 0], data=avg_apparent_temp_per_year, x="Year", y="Apparent Temperature (C)",
+                     color="tab:orange", label="Apparent Temperature", )
+        sns.lineplot(ax=axes[1, 0], data=avg_humidity_per_year, x="Year", y="Humidity", color="tab:blue",
+                     label="Humidity", )
+        sns.lineplot(ax=axes[2, 0], data=avg_wind_speed_per_year, x="Year", y="Wind Speed (km/h)", color="tab:green",
+                     label="Wind Speed", )
 
         # Box plots
-        sns.boxplot(
-            ax=axes[0, 1],
-            data=df,
-            x="Year",
-            y="Temperature (C)",
-            color="tab:purple",
-        )
-        sns.boxplot(
-            ax=axes[1, 1],
-            data=df,
-            x="Year",
-            y="Apparent Temperature (C)",
-            color="tab:pink",
-        )
-        sns.boxplot(
-            ax=axes[2, 1],
-            data=df,
-            x="Year",
-            y="Humidity",
-            color="tab:cyan",
-        )
-        sns.boxplot(
-            ax=axes[3, 1],
-            data=df,
-            x="Year",
-            y="Wind Speed (km/h)",
-            color="tab:gray",
-        )
+        sns.boxplot(ax=axes[0, 1], data=df, x="Year", y="Temperature (C)", color="tab:purple", )
+        sns.boxplot(ax=axes[1, 1], data=df, x="Year", y="Apparent Temperature (C)", color="tab:pink", )
+        sns.boxplot(ax=axes[2, 1], data=df, x="Year", y="Humidity", color="tab:cyan", )
+        sns.boxplot(ax=axes[3, 1], data=df, x="Year", y="Wind Speed (km/h)", color="tab:gray", )
 
         # Rotate x-axis labels for boxplots
         for ax in [axes[0, 1], axes[1, 1], axes[2, 1], axes[3, 1]]:
-            ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
+            ax.tick_params(axis="x", rotation=45)
 
         # Titles and labels
         axes[0, 0].set_title("Average and Apparent Temperature per Year")
@@ -141,7 +91,6 @@ class CSVAnalyzer:
         axes[3, 0].set_title("")
         axes[3, 0].set_xlabel("Year")
         axes[3, 0].set_ylabel("Wind Speed (km/h)")
-        axes[3, 0].legend()
 
         axes[0, 1].set_title("Temperature Distribution per Year")
         axes[1, 1].set_title("Apparent Temperature Distribution per Year")
