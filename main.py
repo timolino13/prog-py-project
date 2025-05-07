@@ -14,9 +14,3 @@ forecast_analyzer.analyze()
 
 csv_analyzer = CSVAnalyzer('data/weatherHistory.csv')
 csv_analyzer.analyze()
-
-#Plot für Durchsnittswerte pro Jahr aus CSV
-
-
-
-
