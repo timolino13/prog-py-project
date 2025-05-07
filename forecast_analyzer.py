@@ -26,20 +26,31 @@ class ForecastAnalyzer:
         return df
 
     def plot_chart(self):
-        fig, axes = plt.subplots(2, 1, figsize=(10, 10))
+        fig, axes = plt.subplots(2, 2, figsize=(20, 10))
 
-        sns.lineplot(ax=axes[0], x="timestamp", y="temperature", data=self.df, color="tab:red", label="Temperature")
-        sns.lineplot(ax=axes[0], x="timestamp", y="feels_like", data=self.df, color="tab:orange", label="Feels Like")
-        sns.lineplot(ax=axes[1], x="timestamp", y="humidity", data=self.df, color="tab:blue", label="Humidity")
+        sns.lineplot(ax=axes[0][0], x="timestamp", y="temperature", data=self.df, color="tab:red", label="Temperature")
+        sns.lineplot(ax=axes[0][0], x="timestamp", y="feels_like", data=self.df, color="tab:orange", label="Feels Like")
+        axes[0][0].set_xlabel("Day")
+        axes[0][0].set_ylabel("Temperature")
+        axes[0][0].set_title("Temperature Forecast")
+        axes[0][0].legend()
 
-        axes[0].set_xlabel("Day")
-        axes[0].set_ylabel("Temperature")
-        axes[0].set_title("Temperature Forecast")
-        axes[0].legend()
+        sns.lineplot(ax=axes[1][0], x="timestamp", y="humidity", data=self.df, color="tab:blue", label="Humidity")
+        axes[1][0].set_xlabel("Day")
+        axes[1][0].set_ylabel("Humidity")
+        axes[1][0].set_title("Humidity Forecast")
 
-        axes[1].set_xlabel("Day")
-        axes[1].set_ylabel("Humidity")
-        axes[1].set_title("Humidity Forecast")
+        sns.boxplot(ax=axes[0][1], x="date", y="temperature", data=self.df, color="tab:green",
+                    label="Temperature Boxplot")
+        axes[0][1].set_xlabel("Day")
+        axes[0][1].set_ylabel("Temperature")
+        axes[0][1].set_title("Temperature Boxplot")
+
+        sns.boxplot(ax=axes[1][1], x="date", y="humidity", data=self.df, color="tab:purple",
+                    label="Humidity Boxplot")
+        axes[1][1].set_xlabel("Day")
+        axes[1][1].set_ylabel("Humidity")
+        axes[1][1].set_title("Humidity Boxplot")
 
         plt.tight_layout()
         plt.show()
@@ -47,11 +58,11 @@ class ForecastAnalyzer:
     def analyze(self):
         self.plot_chart()
 
+        print("\n5 day forecast analysis")
         print(f"\nNumber of forecast entries: {len(self.df)}")
 
         # Calculate average temperature per day
         daily_avg_temps = self.df.groupby("date")["temperature"].mean()
-
         coldest_day_date = daily_avg_temps.idxmin()
         coldest_day_average_temp = self.df[self.df["date"] == coldest_day_date]["temperature"].mean()
         print("\nColdest day:")
